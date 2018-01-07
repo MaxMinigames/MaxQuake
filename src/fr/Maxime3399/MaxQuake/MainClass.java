@@ -3,8 +3,6 @@ package fr.Maxime3399.MaxQuake;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -49,18 +47,6 @@ public class MainClass extends JavaPlugin{
 	
 	public static Plugin getInstance(){
 		return plugin;
-	}
-	
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]){
-		
-		if(cmd.getName().equalsIgnoreCase("test")){
-			
-			//NONE
-			
-		}
-		
-		return true;
-		
 	}
 
 }

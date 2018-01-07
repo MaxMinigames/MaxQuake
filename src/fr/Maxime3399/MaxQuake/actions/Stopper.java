@@ -66,6 +66,7 @@ public class Stopper {
 	    	pls.sendMessage(" ");
 	    	pls.sendMessage("  §1§l======================================");
 	    	qp.setTotal_coins(qp.getTotal_coins()+qp.getWin_coins());
+	    	qp.setPlays(qp.getPlays()+1);
 	    	
 	    }
 	    
