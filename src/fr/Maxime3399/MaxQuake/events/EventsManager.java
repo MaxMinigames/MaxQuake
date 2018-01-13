@@ -19,6 +19,8 @@ public class EventsManager {
 		pm.registerEvents(new ShopMainMenuEvents(), p);
 		pm.registerEvents(new ShopCaseMenuEvents(), p);
 		pm.registerEvents(new ShopTriggerMenuEvents(), p);
+		pm.registerEvents(new ShopExplodeMenuEvents(), p);
+		pm.registerEvents(new ShopColorMenuEvents(), p);
 		pm.registerEvents(new ConfirmMenu(), p);
 		pm.registerEvents(new PickupBooster(), p);
 		

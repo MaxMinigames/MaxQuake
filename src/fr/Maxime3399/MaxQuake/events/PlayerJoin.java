@@ -51,9 +51,15 @@ public class PlayerJoin implements Listener {
 			int onlinePlayers = Bukkit.getOnlinePlayers().size();
 			if(onlinePlayers > 12){
 				e.setJoinMessage(null);
-				p.kickPlayer("§cLa partie est plaine !");
+				p.kickPlayer("§cLa partie est pleine !");
 			}else{
-				e.setJoinMessage(p.getDisplayName()+" §r§ea rejoint la partie [§l§r§e"+onlinePlayers+"§e§l/§r§e12]");
+				e.setJoinMessage(null);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+					@Override
+					public void run() {
+						Bukkit.broadcastMessage(p.getDisplayName()+" §r§ea rejoint la partie [§l§r§e"+onlinePlayers+"§e§l/§r§e12]");
+					}
+				}, 5);
 			}
 			for(Player pls : Bukkit.getOnlinePlayers()){
 				

@@ -8,6 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.Maxime3399.MaxQuake.menus.ShopCaseMenu;
+import fr.Maxime3399.MaxQuake.menus.ShopColorMenu;
+import fr.Maxime3399.MaxQuake.menus.ShopExplodeMenu;
 import fr.Maxime3399.MaxQuake.menus.ShopTriggerMenu;
 
 public class ShopMainMenuEvents implements Listener {
@@ -38,6 +40,16 @@ public class ShopMainMenuEvents implements Listener {
 				}else if(name.equalsIgnoreCase("§eRechargement")){
 					
 					ShopTriggerMenu.openMenu(p);
+					p.playSound(p.getLocation(), Sound.CLICK, 100, 1);
+					
+				}else if(name.equalsIgnoreCase("§eExplosion")){
+					
+					ShopExplodeMenu.openMenu(p);
+					p.playSound(p.getLocation(), Sound.CLICK, 100, 1);
+					
+				}else if(name.equalsIgnoreCase("§eLaser")){
+					
+					ShopColorMenu.openMenu(p);
 					p.playSound(p.getLocation(), Sound.CLICK, 100, 1);
 					
 				}

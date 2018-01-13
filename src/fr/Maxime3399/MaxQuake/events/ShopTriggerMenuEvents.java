@@ -62,9 +62,7 @@ public class ShopTriggerMenuEvents implements Listener {
 					
 				}else if(name.contains("§4Rechargement")){
 					
-					String item = name.replaceAll("§4Rechargement ", "");
-					
-					p.sendMessage("§cTu dois avoir l'apparence "+item+" !");
+					p.sendMessage("§cTu dois avoir le rechargement précédent !");
 					p.playSound(p.getLocation(), Sound.VILLAGER_NO, 100, 1);
 					
 				}else if(name.contains("§6Rechargement")){
@@ -84,7 +82,7 @@ public class ShopTriggerMenuEvents implements Listener {
 								Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
 									@Override
 									public void run() {
-										int cost = CostUtils.getCaseCost(EquipLast.getCase(qp)+1);
+										int cost = CostUtils.getTriggerCost(EquipLast.getTrigger(qp)+1);
 										qp.setCoins(qp.getCoins()-cost);
 										qp.setItems(qp.getItems().replaceAll("trigger"+StringUtils.counter(""+EquipLast.getTrigger(qp)), "trigger"+StringUtils.counter(item)));
 										ShopTriggerMenu.openMenu(p);

@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import fr.Maxime3399.MaxQuake.MainClass;
-import fr.Maxime3399.MaxQuake.custom.ParticleEffect;
+import fr.Maxime3399.MaxQuake.custom.GameState;
 import fr.Maxime3399.MaxQuake.custom.QuakePlayer;
 import fr.Maxime3399.MaxQuake.equip.EquipCurrent;
 import fr.Maxime3399.MaxQuake.managers.CoinsManager;
@@ -58,106 +58,111 @@ public class Shooter {
 	
 	public static void shoot(Player p, boolean bonus){
 		
-		int shotDelay = PlayersManagers.getQuakePlayer(p).getShootDelay();
-		if(bonus){
-			shotDelay = getShootDelay(PlayersManagers.getQuakePlayer(p));
-		}
-		
-		if(shotDelay == getShootDelay(PlayersManagers.getQuakePlayer(p))){
+		if(GameState.isState(GameState.PLAYING)){
 			
-			PlayersManagers.getQuakePlayer(p).setShootDelay(0);
-			Location start = p.getEyeLocation();
-			Vector increase = start.getDirection();
-			boolean block = false;
-			ArrayList<Player> kills = new ArrayList<>();
-			
-			p.playSound(p.getLocation(), Sound.BLAZE_HIT, 100, 2);
-			p.setExp(0);
-			
-			for (int counter = 0; counter < 1000; counter++) {
-				
-				if(!block){
-					
-				    Location point = start.add(increase);
-				    ParticleEffect.FIREWORKS_SPARK.display(0F, 0F, 0F, 0F, 1, point, 200D);
-				    
-				    for(Player pls : Bukkit.getOnlinePlayers()){
-				    	
-				    	QuakePlayer qp = PlayersManagers.getQuakePlayer(pls);
-				    	if(qp.getRole().equalsIgnoreCase("player")){
-				    		
-				    		if(pls != p && !kills.contains(pls)){
-				    			
-					    		Location pm = pls.getLocation().add(0, 0.5, 0);
-					    		Location pm2 = pls.getLocation().add(0, 1.5, 0);
-					    		
-					    		if(point.distance(pm) <= 0.65 || point.distance(pm2) <= 0.65){
-					    			
-					    			kills.add(pls);
-					    			pls.playSound(pls.getLocation(), Sound.BLAZE_DEATH, 100, 2);
-					    			p.playSound(p.getLocation(), Sound.BAT_DEATH, 100, 2);
-					    			
-					    		}
-				    			
-				    		}
-				    		
-				    	}
-				    	
-				    }
-				    
-				    if(point.getWorld().getBlockAt(point).getType() != Material.AIR){
-				    	
-				    	block = true;
-				    	
-				    }
-					
-				}
-			    
+			int shotDelay = PlayersManagers.getQuakePlayer(p).getShootDelay();
+			if(bonus){
+				shotDelay = getShootDelay(PlayersManagers.getQuakePlayer(p));
 			}
 			
-			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+			if(shotDelay == getShootDelay(PlayersManagers.getQuakePlayer(p))){
 				
-				@Override
-				public void run() {
+				PlayersManagers.getQuakePlayer(p).setShootDelay(0);
+				Location start = p.getEyeLocation();
+				Vector increase = start.getDirection();
+				boolean block = false;
+				ArrayList<Player> kills = new ArrayList<>();
+				
+				p.playSound(p.getLocation(), Sound.BLAZE_HIT, 100, 2);
+				p.setExp(0);
+				
+				for (int counter = 0; counter < 1000; counter++) {
 					
-				    if(kills.size() != 0){
-				    	
-				    	for(Player s : kills){
-				    		
-				    		Bukkit.broadcastMessage(p.getDisplayName()+" §ea tué "+s.getDisplayName()+"§r "+getKill(kills.size()));
-				    		QuakePlayer qpV = PlayersManagers.getQuakePlayer(s);
-				    		qpV.setDeath(qpV.getDeath()+1);
-				    		qpV.setCurrent_death(qpV.getCurrent_death()+1);
-				    		//Teleporter.teleport(s);
-				    		
-				    	}
-				    	
-				    	QuakePlayer qp = PlayersManagers.getQuakePlayer(p);
-				    	qp.setKills(qp.getKills()+kills.size());
-				    	qp.setCurrent_kills(qp.getCurrent_kills()+kills.size());
-				    	CoinsManager.giveCoins(qp, "joueur tué", kills.size()*2);
-				    	if(kills.size() > 1){
-				    		CoinsManager.giveCoins(qp, getKill(kills.size()).replaceAll("§c§l", ""), getMultiKillBonus(kills.size()));
-				    	}
-				    	p.setLevel(p.getLevel()+kills.size());
-				    	
-				    	for(Player pls : Bukkit.getOnlinePlayers()){
-				    		
-				    		GameScoreboard.loadScoreboard(pls);
-				    		
-				    	}
-				    	
-				    	if(qp.getCurrent_kills() >= 25){
-				    		
-				    		Stopper.end();
-				    		
-				    	}
-				    	
-				    }
-					
+					if(!block){
+						
+					    Location point = start.add(increase);
+					    Laser.placeParticle(p, point);
+					    
+					    for(Player pls : Bukkit.getOnlinePlayers()){
+					    	
+					    	QuakePlayer qp = PlayersManagers.getQuakePlayer(pls);
+					    	if(qp.getRole().equalsIgnoreCase("player")){
+					    		
+					    		if(pls != p && !kills.contains(pls)){
+					    			
+						    		Location pm = pls.getLocation().add(0, 0.5, 0);
+						    		Location pm2 = pls.getLocation().add(0, 1.5, 0);
+						    		
+						    		if(point.distance(pm) <= 0.65 || point.distance(pm2) <= 0.65){
+						    			
+						    			kills.add(pls);
+						    			pls.playSound(pls.getLocation(), Sound.BLAZE_DEATH, 100, 2);
+						    			p.playSound(p.getLocation(), Sound.BAT_DEATH, 100, 2);
+						    			
+						    		}
+					    			
+					    		}
+					    		
+					    	}
+					    	
+					    }
+					    
+					    if(point.getWorld().getBlockAt(point).getType() != Material.AIR){
+					    	
+					    	block = true;
+					    	
+					    }
+						
+					}
+				    
 				}
 				
-			}, 1);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+					
+					@Override
+					public void run() {
+						
+					    if(kills.size() != 0){
+					    	
+					    	for(Player s : kills){
+					    		
+					    		Bukkit.broadcastMessage(p.getDisplayName()+" §ea tué "+s.getDisplayName()+"§r "+getKill(kills.size()));
+					    		QuakePlayer qpV = PlayersManagers.getQuakePlayer(s);
+					    		qpV.setDeath(qpV.getDeath()+1);
+					    		qpV.setCurrent_death(qpV.getCurrent_death()+1);
+					    		Explode.explode(p, s.getLocation().add(0, 1.62, 0));
+					    		//Teleporter.teleport(s);
+					    		
+					    	}
+					    	
+					    	QuakePlayer qp = PlayersManagers.getQuakePlayer(p);
+					    	qp.setKills(qp.getKills()+kills.size());
+					    	qp.setCurrent_kills(qp.getCurrent_kills()+kills.size());
+					    	CoinsManager.giveCoins(qp, "joueur tué", kills.size()*2);
+					    	if(kills.size() > 1){
+					    		CoinsManager.giveCoins(qp, getKill(kills.size()).replaceAll("§c§l", ""), getMultiKillBonus(kills.size()));
+					    	}
+					    	p.setLevel(p.getLevel()+kills.size());
+					    	
+					    	for(Player pls : Bukkit.getOnlinePlayers()){
+					    		
+					    		GameScoreboard.loadScoreboard(pls);
+					    		
+					    	}
+					    	
+					    	if(qp.getCurrent_kills() >= 25){
+					    		
+					    		Stopper.end();
+					    		
+					    	}
+					    	
+					    }
+						
+					}
+					
+				}, 1);
+				
+			}
 			
 		}
 		

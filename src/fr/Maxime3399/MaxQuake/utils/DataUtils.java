@@ -10,7 +10,7 @@ public class DataUtils {
 	public static void registerPlayer(Player p){
 		
 		try{
-			MySQLUtils.state.executeUpdate("INSERT INTO `quakecraft` (`uuid`, `info-name`, `info-coins`, `info-items`, `info-enable`, `info-params`, `info-kills`, `info-death`, `info-booster_speed`, `info-booster_shoot`, `info-win`, `info-play`, `info-totalCoins`) VALUES ('"+p.getUniqueId().toString()+"', '"+p.getName()+"', '0', 'case01,trigger01', 'case01,trigger01', '', '0', '0', '0', '0', '0', '0', '0');");
+			MySQLUtils.state.executeUpdate("INSERT INTO `quakecraft` (`uuid`, `info-name`, `info-coins`, `info-items`, `info-enable`, `info-params`, `info-kills`, `info-death`, `info-booster_speed`, `info-booster_shoot`, `info-win`, `info-play`, `info-totalCoins`) VALUES ('"+p.getUniqueId().toString()+"', '"+p.getName()+"', '0', 'case01,trigger01,explode01,color01', 'case01,trigger01,explode01,color01', '', '0', '0', '0', '0', '0', '0', '0');");
 		}catch(SQLException e){
 
 		}

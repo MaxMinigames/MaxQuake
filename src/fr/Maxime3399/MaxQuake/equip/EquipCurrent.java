@@ -131,5 +131,153 @@ public class EquipCurrent {
 		return result;
 		
 	}
+	
+	public static int getExplode(QuakePlayer qp){
+		
+		int result = 1;
+		String items = qp.getEnable();
+		
+		if(items.contains("explode02")){
+			result = 2;
+		}else if(items.contains("explode03")){
+			result = 3;
+		}else if(items.contains("explode04")){
+			result = 4;
+		}else if(items.contains("explode05")){
+			result = 5;
+		}
+		
+		return result;
+		
+	}
+	
+	public static String getExplodeString(QuakePlayer qp){
+		
+		String result = "explode01";
+		String items = qp.getEnable();
+		
+		if(items.contains("explode02")){
+			result = "explode02";
+		}else if(items.contains("explode03")){
+			result = "explode03";
+		}else if(items.contains("explode04")){
+			result = "explode04";
+		}else if(items.contains("explode05")){
+			result = "explode05";
+		}
+		
+		return result;
+		
+	}
+	
+	public static int getColor(QuakePlayer qp){
+		
+		int result = 1;
+		String items = qp.getEnable();
+		
+		if(items.contains("color02")){
+			result = 2;
+		}else if(items.contains("color03")){
+			result = 3;
+		}else if(items.contains("color04")){
+			result = 4;
+		}else if(items.contains("color05")){
+			result = 5;
+		}else if(items.contains("color06")){
+			result = 6;
+		}else if(items.contains("color07")){
+			result = 7;
+		}else if(items.contains("color08")){
+			result = 8;
+		}else if(items.contains("color09")){
+			result = 9;
+		}else if(items.contains("color10")){
+			result = 10;
+		}else if(items.contains("color11")){
+			result = 11;
+		}else if(items.contains("color12")){
+			result = 12;
+		}else if(items.contains("color13")){
+			result = 13;
+		}else if(items.contains("color14")){
+			result = 14;
+		}else if(items.contains("color15")){
+			result = 15;
+		}else if(items.contains("color16")){
+			result = 16;
+		}else if(items.contains("color17")){
+			result = 17;
+		}else if(items.contains("color18")){
+			result = 18;
+		}else if(items.contains("color19")){
+			result = 19;
+		}else if(items.contains("color20")){
+			result = 20;
+		}else if(items.contains("color21")){
+			result = 21;
+		}else if(items.contains("color22")){
+			result = 22;
+		}else if(items.contains("color23")){
+			result = 23;
+		}
+		
+		return result;
+		
+	}
+	
+	public static String getColorString(QuakePlayer qp){
+		
+		String result = "color01";
+		String items = qp.getEnable();
+		
+		if(items.contains("color02")){
+			result = "color02";
+		}else if(items.contains("color03")){
+			result = "color03";
+		}else if(items.contains("color04")){
+			result = "color04";
+		}else if(items.contains("color05")){
+			result = "color05";
+		}else if(items.contains("color06")){
+			result = "color06";
+		}else if(items.contains("color07")){
+			result = "color07";
+		}else if(items.contains("color08")){
+			result = "color08";
+		}else if(items.contains("color09")){
+			result = "color09";
+		}else if(items.contains("color10")){
+			result = "color10";
+		}else if(items.contains("color11")){
+			result = "color11";
+		}else if(items.contains("color12")){
+			result = "color12";
+		}else if(items.contains("color13")){
+			result = "color13";
+		}else if(items.contains("color14")){
+			result = "color14";
+		}else if(items.contains("color15")){
+			result = "color15";
+		}else if(items.contains("color16")){
+			result = "color16";
+		}else if(items.contains("color17")){
+			result = "color17";
+		}else if(items.contains("color18")){
+			result = "color18";
+		}else if(items.contains("color19")){
+			result = "color19";
+		}else if(items.contains("color20")){
+			result = "color20";
+		}else if(items.contains("color21")){
+			result = "color21";
+		}else if(items.contains("color22")){
+			result = "color22";
+		}else if(items.contains("color23")){
+			result = "color23";
+		}
+		
+		return result;
+		
+	}
 
 }

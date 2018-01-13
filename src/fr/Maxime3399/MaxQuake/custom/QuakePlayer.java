@@ -42,7 +42,7 @@ public class QuakePlayer{
 		
 		this.setPlayer(p);
 		this.uuid = p.getUniqueId();
-		this.name = DataUtils.getPlayerStringInfo(uuid.toString(), "name");
+		this.name = p.getName();
 		this.display_name = p.getDisplayName();
 		this.coins = DataUtils.getPlayerIntInfo(uuid.toString(), "coins");
 		this.items = DataUtils.getPlayerStringInfo(uuid.toString(), "items");
