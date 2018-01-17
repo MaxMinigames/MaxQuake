@@ -85,6 +85,7 @@ public class ShopExplodeMenuEvents implements Listener {
 										int cost = CostUtils.getExplodeCost(EquipLast.getExplode(qp)+1);
 										qp.setCoins(qp.getCoins()-cost);
 										qp.setItems(qp.getItems().replaceAll("explode"+StringUtils.counter(""+EquipLast.getExplode(qp)), "explode"+StringUtils.counter(item)));
+										qp.setEnable(qp.getEnable().replaceAll(EquipCurrent.getExplodeString(qp), "explode"+StringUtils.counter(item)));
 										ShopExplodeMenu.openMenu(p);
 										p.sendMessage("§aAchat effectué !");
 										p.playSound(p.getLocation(), Sound.NOTE_PLING, 100, 2);

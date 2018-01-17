@@ -85,6 +85,7 @@ public class ShopCaseMenuEvents implements Listener {
 										int cost = CostUtils.getCaseCost(EquipLast.getCase(qp)+1);
 										qp.setCoins(qp.getCoins()-cost);
 										qp.setItems(qp.getItems().replaceAll("case"+StringUtils.counter(""+EquipLast.getCase(qp)), "case"+StringUtils.counter(item)));
+										qp.setEnable(qp.getEnable().replaceAll(EquipCurrent.getCaseString(qp), "case"+StringUtils.counter(item)));
 										ShopCaseMenu.openMenu(p);
 										p.sendMessage("§aAchat effectué !");
 										p.playSound(p.getLocation(), Sound.NOTE_PLING, 100, 2);

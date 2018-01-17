@@ -101,6 +101,13 @@ public class PlayerJoin implements Listener {
 							Shooter.startShootSystem();
 							BoostersManager.start();
 							
+						}else if(time == 120){
+							
+							Bukkit.broadcastMessage("§eDébut de la partie dans 2 minutes");
+							for(Player pls : Bukkit.getOnlinePlayers()){
+								pls.playSound(pls.getLocation(), Sound.CLICK, 100, 2);
+							}
+							
 						}else if(time == 60){
 							
 							Bukkit.broadcastMessage("§eDébut de la partie dans une minute");

@@ -85,6 +85,7 @@ public class ShopColorMenuEvents implements Listener {
 										int cost = CostUtils.getColorCost(EquipLast.getColor(qp)+1);
 										qp.setCoins(qp.getCoins()-cost);
 										qp.setItems(qp.getItems().replaceAll("color"+StringUtils.counter(""+EquipLast.getColor(qp)), "color"+StringUtils.counter(item)));
+										qp.setEnable(qp.getEnable().replaceAll(EquipCurrent.getColorString(qp), "color"+StringUtils.counter(item)));
 										ShopColorMenu.openMenu(p);
 										p.sendMessage("§aAchat effectué !");
 										p.playSound(p.getLocation(), Sound.NOTE_PLING, 100, 2);

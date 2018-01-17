@@ -85,6 +85,7 @@ public class ShopTriggerMenuEvents implements Listener {
 										int cost = CostUtils.getTriggerCost(EquipLast.getTrigger(qp)+1);
 										qp.setCoins(qp.getCoins()-cost);
 										qp.setItems(qp.getItems().replaceAll("trigger"+StringUtils.counter(""+EquipLast.getTrigger(qp)), "trigger"+StringUtils.counter(item)));
+										qp.setEnable(qp.getEnable().replaceAll(EquipCurrent.getTriggerString(qp), "trigger"+StringUtils.counter(item)));
 										ShopTriggerMenu.openMenu(p);
 										p.sendMessage("§aAchat effectué !");
 										p.playSound(p.getLocation(), Sound.NOTE_PLING, 100, 2);
