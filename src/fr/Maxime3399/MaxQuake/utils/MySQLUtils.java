@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.Maxime3399.MaxQuake.MainClass;
+
 public class MySQLUtils {
 	
-    private static String url = "jdbc:mysql://localhost:3306/maxminigames?useSSL=false";
-    private static String user = "root";
-    private static String passwd = "";
+    private static String url = "jdbc:mysql://"+MainClass.getInstance().getConfig().getString("Adress")+":"+MainClass.getInstance().getConfig().getInt("Port")+"/"+MainClass.getInstance().getConfig().getString("Database")+"?useSSL="+MainClass.getInstance().getConfig().getString("UseSSL")+"";
+    private static String user = MainClass.getInstance().getConfig().getString("User");
+    private static String passwd = MainClass.getInstance().getConfig().getString("Password");
     
     public static Statement state;
 	
