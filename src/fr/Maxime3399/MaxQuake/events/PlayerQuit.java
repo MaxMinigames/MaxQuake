@@ -63,7 +63,6 @@ public class PlayerQuit implements Listener {
 				
 				if(onlinePlayers == 0){
 					
-					GameState.setState(GameState.END);
 					Bukkit.getServer().reload();
 					
 				}else if(onlinePlayers < 2){

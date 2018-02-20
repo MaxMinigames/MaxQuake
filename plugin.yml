@@ -3,5 +3,6 @@ name: MaxQuake
 version: 1.0.0-a1.0
 author: Maxime3399
 database: true
+depends: [ProtocolLib]
 commands:
     test:

@@ -40,10 +40,19 @@ public class MainClass extends JavaPlugin{
 			
 		}else{
 			
-			DataUtils.registerPlugin();
-			EventsManager.registerEvents(this);
-			for(Location ls : Teleporter.getLocations()){
-				ls.getWorld().getBlockAt(ls).setType(Material.REDSTONE_BLOCK);
+			if(Bukkit.getPluginManager().getPlugin("ProtocolLib") == null){
+				
+				Bukkit.getConsoleSender().sendMessage("§eMaxQuake §d: §cThe ProtocolLib plugin was not found !");
+				Bukkit.getPluginManager().disablePlugin(this);
+				
+			}else{
+				
+				DataUtils.registerPlugin();
+				EventsManager.registerEvents(this);
+				for(Location ls : Teleporter.getLocations()){
+					ls.getWorld().getBlockAt(ls).setType(Material.REDSTONE_BLOCK);
+				}
+				
 			}
 			
 		}

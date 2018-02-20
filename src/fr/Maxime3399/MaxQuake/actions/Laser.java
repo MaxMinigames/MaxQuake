@@ -1,5 +1,6 @@
 package fr.Maxime3399.MaxQuake.actions;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -11,6 +12,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import fr.Maxime3399.MaxQuake.MainClass;
+import fr.Maxime3399.MaxQuake.custom.EntityHider;
+import fr.Maxime3399.MaxQuake.custom.EntityHider.Policy;
 import fr.Maxime3399.MaxQuake.custom.ParticleEffect;
 import fr.Maxime3399.MaxQuake.custom.ParticleEffect.OrdinaryColor;
 import fr.Maxime3399.MaxQuake.custom.QuakePlayer;
@@ -26,11 +29,24 @@ public class Laser {
 		
 		if(EquipCurrent.getColor(qp) >= 18){
 			
+			ArrayList<Player> hids = new ArrayList<>();
+			for(Player pls : Bukkit.getOnlinePlayers()){
+				QuakePlayer qps = PlayersManagers.getQuakePlayer(pls);
+				if(qps.getSettings().contains("laser")){
+					if(pls.getLocation().distance(loc) < 16){
+						hids.add(pls);
+					}
+				}
+			}
 			ItemStack IS = new ItemStack(EquipItems.getColorType(qp));
 			ItemMeta IM = IS.getItemMeta();
 			IM.setDisplayName(new Random().nextInt(999999)+"");
 			IS.setItemMeta(IM);
 			Item i = loc.getWorld().dropItem(loc, IS);
+			for(Player phs : hids){
+				EntityHider eh = new EntityHider(MainClass.getInstance(), Policy.BLACKLIST);
+				eh.hideEntity(phs, i);
+			}
 			i.setVelocity(new Vector(0, 0, 0));
 			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
 				
@@ -41,14 +57,17 @@ public class Laser {
 					
 				}
 				
-			}, 1);
+			}, 5);
 			
 		}else{
 			
 			if(EquipCurrent.getColor(qp) == 1){
 				
 				for(Player pls : Bukkit.getOnlinePlayers()){
-					ParticleEffect.FIREWORKS_SPARK.display(0, 0, 0, 0, 1, loc, pls);
+					QuakePlayer qps = PlayersManagers.getQuakePlayer(pls);
+					if(!qps.getSettings().contains("laser")){
+						ParticleEffect.FIREWORKS_SPARK.display(0, 0, 0, 0, 1, loc, pls);
+					}
 				}
 				
 			}else{
@@ -121,9 +140,12 @@ public class Laser {
 				}
 				
 				for(Player pls : Bukkit.getOnlinePlayers()){
-					ParticleEffect.REDSTONE.display(new OrdinaryColor(r, g, b), loc, pls);
-					ParticleEffect.REDSTONE.display(new OrdinaryColor(r, g, b), loc, pls);
-					ParticleEffect.REDSTONE.display(new OrdinaryColor(r, g, b), loc, pls);
+					QuakePlayer qps = PlayersManagers.getQuakePlayer(pls);
+					if(!qps.getSettings().contains("laser")){
+						ParticleEffect.REDSTONE.display(new OrdinaryColor(r, g, b), loc, pls);
+						ParticleEffect.REDSTONE.display(new OrdinaryColor(r, g, b), loc, pls);
+						ParticleEffect.REDSTONE.display(new OrdinaryColor(r, g, b), loc, pls);
+					}
 				}
 				
 			}

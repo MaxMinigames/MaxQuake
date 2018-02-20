@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.Maxime3399.MaxQuake.actions.Shooter;
 import fr.Maxime3399.MaxQuake.custom.GameState;
+import fr.Maxime3399.MaxQuake.menus.SettingsMenu;
 import fr.Maxime3399.MaxQuake.menus.ShopMainMenu;
 import fr.Maxime3399.MaxQuake.menus.StatsMenu;
 
@@ -57,7 +58,8 @@ public class InteractEvent implements Listener {
 			
 			if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK){
 				
-				//SUITE
+				p.playSound(p.getLocation(), Sound.LEVEL_UP, 100, 2);
+				SettingsMenu.openMenu(p);
 				
 			}
 			

@@ -14,4 +14,21 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/fr/Maxime3399/MaxQuake/custom/EntityHider.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/D%C3%A9veloppement/Ancient/workspace%20MaxMinigames/MaxQuake/src/fr/Maxime3399/MaxQuake/custom/EntityHider.java</locationURI>
+		</link>
+		<link>
+			<name>src/fr/Maxime3399/MaxQuake/events/SettingsMenuEvents.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/D%C3%A9veloppement/Ancient/workspace%20MaxMinigames/MaxQuake/src/fr/Maxime3399/MaxQuake/events/SettingsMenuEvents.java</locationURI>
+		</link>
+		<link>
+			<name>src/fr/Maxime3399/MaxQuake/menus/SettingsMenu.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/D%C3%A9veloppement/Ancient/workspace%20MaxMinigames/MaxQuake/src/fr/Maxime3399/MaxQuake/menus/SettingsMenu.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

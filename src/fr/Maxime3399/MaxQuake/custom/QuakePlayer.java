@@ -16,6 +16,7 @@ public class QuakePlayer{
 	private int coins;
 	private String items;
 	private String enable;
+	private String settings;
 	
 	private int kills;
 	private int death;
@@ -54,6 +55,7 @@ public class QuakePlayer{
 		this.wins = DataUtils.getPlayerIntInfo(uuid.toString(), "win");
 		this.plays = DataUtils.getPlayerIntInfo(uuid.toString(), "play");
 		this.total_coins = DataUtils.getPlayerIntInfo(uuid.toString(), "totalCoins");
+		this.settings = DataUtils.getPlayerStringInfo(uuid.toString(), "params");
 		
 	}
 	
@@ -70,6 +72,7 @@ public class QuakePlayer{
 		DataUtils.setPlayerIntInfo(uuid.toString(), "win", wins);
 		DataUtils.setPlayerIntInfo(uuid.toString(), "play", plays);
 		DataUtils.setPlayerIntInfo(uuid.toString(), "totalCoins", total_coins);
+		DataUtils.setPlayerStringInfo(uuid.toString(), "params", settings);
 		
 	}
 
@@ -247,6 +250,14 @@ public class QuakePlayer{
 
 	public void setTotal_coins(int total_coins) {
 		this.total_coins = total_coins;
+	}
+
+	public String getSettings() {
+		return settings;
+	}
+
+	public void setSettings(String settings) {
+		this.settings = settings;
 	}
 
 }

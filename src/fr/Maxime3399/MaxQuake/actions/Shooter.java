@@ -96,7 +96,6 @@ public class Shooter {
 						    		if(point.distance(pm) <= 0.65 || point.distance(pm2) <= 0.65){
 						    			
 						    			kills.add(pls);
-							    		Explode.explode(p, point);
 						    			pls.playSound(pls.getLocation(), Sound.BLAZE_DEATH, 100, 2);
 						    			p.playSound(p.getLocation(), Sound.BAT_DEATH, 100, 2);
 						    			
@@ -131,6 +130,7 @@ public class Shooter {
 					    		QuakePlayer qpV = PlayersManagers.getQuakePlayer(s);
 					    		qpV.setDeath(qpV.getDeath()+1);
 					    		qpV.setCurrent_death(qpV.getCurrent_death()+1);
+					    		Explode.explode(p, s.getLocation().add(0, 1.2, 0));
 					    		Teleporter.teleport(s);
 					    		
 					    	}

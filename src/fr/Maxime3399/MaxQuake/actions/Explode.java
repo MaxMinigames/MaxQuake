@@ -12,7 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import fr.Maxime3399.MaxQuake.MainClass;
+import fr.Maxime3399.MaxQuake.custom.EntityHider;
 import fr.Maxime3399.MaxQuake.custom.QuakePlayer;
+import fr.Maxime3399.MaxQuake.custom.EntityHider.Policy;
 import fr.Maxime3399.MaxQuake.managers.PlayersManagers;
 
 public class Explode {
@@ -20,21 +22,28 @@ public class Explode {
 	public static void explode(Player shooter, Location loc){
 		
 		Firework f = loc.getWorld().spawn(loc, Firework.class);
+		for(Player pls : Bukkit.getOnlinePlayers()){
+			QuakePlayer qps = PlayersManagers.getQuakePlayer(pls);
+			if(qps.getSettings().contains("explode")){
+				EntityHider eh = new EntityHider(MainClass.getInstance(), Policy.BLACKLIST);
+				eh.hideEntity(pls, f);
+			}
+		}
 		FireworkMeta fm = f.getFireworkMeta();
 		FireworkEffect fr;
 		
 		QuakePlayer qp = PlayersManagers.getQuakePlayer(shooter);
 		
 		if(qp.getEnable().contains("explode01")){
-			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.BALL).withColor(Color.fromBGR(new Random().nextInt(256), new Random().nextInt(256), new Random().nextInt(256))).build();
+			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.BALL).withColor(Color.fromBGR(new Random().nextInt(255)+1, new Random().nextInt(255)+1, new Random().nextInt(255)+1)).build();
 		}else if(qp.getEnable().contains("explode02")){
-			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.BURST).withColor(Color.fromBGR(new Random().nextInt(256), new Random().nextInt(256), new Random().nextInt(256))).build();
+			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.BURST).withColor(Color.fromBGR(new Random().nextInt(255)+1, new Random().nextInt(255)+1, new Random().nextInt(255)+1)).build();
 		}else if(qp.getEnable().contains("explode03")){
-			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.BALL_LARGE).withColor(Color.fromBGR(new Random().nextInt(256), new Random().nextInt(256), new Random().nextInt(256))).build();
+			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.BALL_LARGE).withColor(Color.fromBGR(new Random().nextInt(255)+1, new Random().nextInt(255)+1, new Random().nextInt(255)+1)).build();
 		}else if(qp.getEnable().contains("explode04")){
-			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.CREEPER).withColor(Color.fromBGR(new Random().nextInt(256), new Random().nextInt(256), new Random().nextInt(256))).build();
+			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.CREEPER).withColor(Color.fromBGR(new Random().nextInt(255)+1, new Random().nextInt(255)+1, new Random().nextInt(255)+1)).build();
 		}else{
-			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.STAR).withColor(Color.fromBGR(new Random().nextInt(256), new Random().nextInt(256), new Random().nextInt(256))).build();
+			fr = FireworkEffect.builder().flicker(false).trail(false).with(Type.STAR).withColor(Color.fromBGR(new Random().nextInt(255)+1, new Random().nextInt(255)+1, new Random().nextInt(255)+1)).build();
 		}
 		
 		fm.addEffect(fr);
